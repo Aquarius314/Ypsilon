@@ -23,15 +23,16 @@ public class Player extends Alive {
     public static double X, Y;
 
     private static boolean DISPLAY_IN_CENTER = true;
-    public static boolean INFINITE_AMMUNITION = true;
+    public static boolean INFINITE_AMMUNITION = false;
     private long INFO_TIME = 0, INFO_STEP = 1000;
 
-    private double energyRegenerationRate = 1d;
+    private double energyRegenerationRate = 0.02d;
 
     public Fuel fuel;
     private Weapon weapon;
     private MiniMap minimap;
     private FullMap fullmap;
+    private HealthBar healthBar;
     private long creationTime = System.currentTimeMillis();
 
     protected static Animation anim = new Animation("player", 8, 0.03);
@@ -55,14 +56,17 @@ public class Player extends Alive {
         setRadius((getWidth()+getHeight())/4);
         setVx(unitSpeed);
         fuel = new Fuel();
-        weapon = new MachineGun(5, this);
+        weapon = new RotationGun(5, this);
         minimap = new MiniMap(this);
         fullmap = new FullMap(this);
+        healthBar = new HealthBar(this);
         canvasElements.add(fuel);
         canvasElements.add(weapon);
         canvasElements.add(minimap);
         canvasElements.add(fullmap);
-        health = 200;
+        canvasElements.add(healthBar);
+        maxHealth = 200;
+        health = maxHealth;
     }
 
     @Override

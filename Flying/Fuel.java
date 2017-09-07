@@ -12,6 +12,15 @@ public class Fuel extends CanvasElement {
     private double value = maxValue;
     private double unit = 0.1;
 
+    public Fuel() {
+        x = 10;
+        y = 10;
+        h = 10;
+        arc = 10;
+        strokeColor = Color.RED;
+        fillColor = Color.BLUE;
+    }
+
     public void use(double val) {
         value -= unit*val;
     }
@@ -27,10 +36,10 @@ public class Fuel extends CanvasElement {
 
     @Override
     public void display(GraphicsContext gc, double time) {
-        gc.setFill(Color.BLUE);
-        gc.setStroke(Color.RED);
+        gc.setFill(fillColor);
+        gc.setStroke(strokeColor);
         gc.setLineWidth(2);
-        gc.fillRoundRect(10, 10, value, 10, 10, 10);
-        gc.strokeRoundRect(10, 10, maxValue, 10, 10, 10);
+        gc.fillRoundRect(x, y, value, h, arc, arc);
+        gc.strokeRoundRect(x, y, maxValue, h, arc, arc);
     }
 }

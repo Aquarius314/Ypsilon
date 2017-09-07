@@ -12,13 +12,19 @@ public abstract class Weapon extends CanvasElement {
     protected double shootingSpeed;
     protected double lastUseTime = 0;
     protected Alive owner;
-    protected int maxAmmunition = 20;
+    protected int maxAmmunition = 100;
     protected int ammunition = maxAmmunition;
     protected double damage;
 
     public Weapon(double s, Alive owner) {
         this.shootingSpeed = s;
         this.owner = owner;
+        x = 10;
+        y = 30;
+        w = 4;
+        h = 10;
+        strokeColor = Color.RED;
+        fillColor = Color.RED;
     }
 
     public double getDamage() {
@@ -37,13 +43,13 @@ public abstract class Weapon extends CanvasElement {
 
     @Override
     public void display(GraphicsContext gc, double time) {
-        gc.setFill(Color.RED);
+        gc.setFill(fillColor);
         for(int i = 0; i < ammunition; i++) {
-            gc.fillRect(i*5+10, 30, 4, 10);
+            gc.fillRect(i*5+x, y, w, h);
         }
-        gc.setStroke(Color.RED);
+        gc.setStroke(strokeColor);
         for(int i = 0; i < maxAmmunition; i++) {
-            gc.strokeRect(i*5+10, 30, 4, 10);
+            gc.strokeRect(i*5+x, y, w, h);
         }
     }
 }

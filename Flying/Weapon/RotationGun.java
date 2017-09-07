@@ -17,9 +17,9 @@ public class RotationGun extends Weapon {
     public void use(double x, double y) {
         lastUseTime = System.currentTimeMillis();
         if(ammunition > 0) {
-            for(int i = 0; i < 65; i++) {
-                double rx = owner.getX() - Player.rx() + 100*Math.sin(i/10.0);
-                double ry = owner.getY() - Player.ry() + 100*Math.cos(i/10.0);
+            for(int i = 0; i < 650; i++) {
+                double rx = owner.getX() - Player.rx() + 100*Math.sin(i/100.0);
+                double ry = owner.getY() - Player.ry() + 100*Math.cos(i/100.0);
                 owner.shoot(rx, ry);
             }
             if(!Player.INFINITE_AMMUNITION)
