@@ -1,12 +1,13 @@
 package Flying.Weapon;
 
+import Flying.Alive;
 import Flying.Player;
 
 /**
  * Created by jakub on 04.09.17.
  */
 public class MachineGun extends Weapon {
-    public MachineGun(double s, Player owner) {
+    public MachineGun(double s, Alive owner) {
         super(s, owner);
         damage = 10;
     }

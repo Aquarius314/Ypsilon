@@ -6,6 +6,7 @@ import Environment.GameObject;
 import Environment.Physics;
 import Environment.Planet;
 import Environment.RigidBody;
+import Flying.Weapon.Weapon;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -20,7 +21,6 @@ public abstract class Alive extends GameObject implements Active, RigidBody {
     protected double maxUnitSpeed = 10.0;
     protected double unitSpeed = 0.1;
     protected boolean isAlive = true;
-    protected int align;
     protected Planet landedPlanet;
 
     protected ArrayList<Missile> missiles = new ArrayList<Missile>();
@@ -31,6 +31,17 @@ public abstract class Alive extends GameObject implements Active, RigidBody {
     public Alive(double x, double y, double r) {
         super(x, y, r);
         setAlign();
+    }
+
+    public abstract void shoot(double x, double y);
+
+    public void applyDamage(double dmg) {
+        health -= dmg;
+        System.out.println("Took " + dmg + " damage! HP left: " + health);
+        if(health <= 0) {
+            kill();
+            System.out.println("Died!");
+        }
     }
 
     public abstract double getDamage();

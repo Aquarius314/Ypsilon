@@ -21,20 +21,20 @@ public class Missile extends GameObject implements Active, RigidBody {
     private double dmg;
     private boolean isActive = true;
     private static Image bulletBlue, bulletRed;
-    private int align;
 
     static {
         bulletBlue = new Image("assets/bullet_blue.png");
         bulletRed = new Image("assets/bullet_red.png");
     }
 
-    public Missile(double x, double y, double r, double vx, double vy, double dmg) {
-        super(x, y, r);
-        setVx(vx*unitSpeed);
-        setVy(vy*unitSpeed);
-        creationTime = System.currentTimeMillis();
-        this.dmg = dmg;
-    }
+//    public Missile(double x, double y, double r, double vx, double vy, double dmg) {
+//        super(x, y, r);
+//        setVx(vx*unitSpeed);
+//        setVy(vy*unitSpeed);
+//        move();move();move();   // so it doesnt start from middle of player
+//        creationTime = System.currentTimeMillis();
+//        this.dmg = dmg;
+//    }
 
     public Missile(Alive parent, double vx, double vy) {
         super(parent.getX(), parent.getY(), parent.getRadius());
@@ -76,7 +76,7 @@ public class Missile extends GameObject implements Active, RigidBody {
         }
     }
 
-    private void explode() {
+    public void explode() {
         isActive = false;
         String name = align==0 ? "explosion/blue" : "explosion/red";
         World.animationsPanel.addAnimation(new LoneAnimation(this, name, 17, 0.015));

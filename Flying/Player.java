@@ -55,14 +55,14 @@ public class Player extends Alive {
         setRadius((getWidth()+getHeight())/4);
         setVx(unitSpeed);
         fuel = new Fuel();
-        weapon = new RotationGun(5, this);
+        weapon = new MachineGun(5, this);
         minimap = new MiniMap(this);
         fullmap = new FullMap(this);
         canvasElements.add(fuel);
         canvasElements.add(weapon);
         canvasElements.add(minimap);
         canvasElements.add(fullmap);
-//        setRotation();
+        health = 200;
     }
 
     @Override
@@ -110,7 +110,7 @@ public class Player extends Alive {
     public void activity() {
         super.activity();
         controlActions();
-        logInfo();
+//        logInfo();
     }
 
     private void logInfo() {
@@ -180,7 +180,7 @@ public class Player extends Alive {
         double distance = Math.sqrt(Math.pow(getX()-x,2)+Math.pow(getY()-y,2));
         double mvX = (x-getX())/distance;
         double mvY = (y-getY())/distance;
-        missiles.add(new Missile(getX(), getY(), 4, mvX, mvY, weapon.getDamage()));
+        missiles.add(new Missile(this, mvX, mvY));
     }
 
     @Override
@@ -192,7 +192,9 @@ public class Player extends Alive {
 
     @Override
     public void collideWith(GameObject c) {
-
+        Missile m = (Missile)c;
+        applyDamage(m.getDamage());
+        m.explode();
     }
 
     @Override

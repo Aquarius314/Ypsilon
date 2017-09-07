@@ -15,6 +15,7 @@ public abstract class GameObject implements Displayable {
     private double vx, vy;
     protected boolean staticPosition = false;
     private double rotation;
+    protected int align;
 
     public GameObject(){}
 
@@ -96,10 +97,12 @@ public abstract class GameObject implements Displayable {
     }
 
     public void checkCollision(GameObject c) {
-        double rSum = getRadius()+c.getRadius();
-        if(rSum < distanceTo(c)) {
-            // we have a collision
-            collideWith(c);
+        if(c.align != this.align) {
+            double rSum = getRadius()+c.getRadius();
+            if(rSum > distanceTo(c)) {
+                // we have a collision
+                collideWith(c);
+            }
         }
     }
 

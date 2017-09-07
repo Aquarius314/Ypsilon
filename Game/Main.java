@@ -96,6 +96,11 @@ public class Main extends Application {
                 plyr.applyGravity(plnt);
             }
         }
+        for(Enemy e : world.enemies) {
+            for(Planet plnt : world.planets) {
+                e.applyGravity(plnt);
+            }
+        }
     }
 
     private void render(double time) {

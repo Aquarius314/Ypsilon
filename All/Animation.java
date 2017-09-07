@@ -15,6 +15,7 @@ public class Animation {
     // for faster use
     public static Image[] redExplosionFrames, blueExplosionFrames;
     public static Image[] playerFrames;
+    public static Image[] enemyFrames;
 
     private int counter = 0;
     public boolean animationFinished = false;
@@ -23,6 +24,7 @@ public class Animation {
         redExplosionFrames = createFrames("explosion/red", 17);
         blueExplosionFrames = createFrames("explosion/blue", 17);
         playerFrames = createFrames("player", 8);
+        enemyFrames = createFrames("enemy", 9);
     }
 
     public Animation(String name, int n, double frameDuration) {
@@ -35,6 +37,9 @@ public class Animation {
                 break;
             case "player" :
                 frames = playerFrames;
+                break;
+            case "enemy" :
+                frames = enemyFrames;
                 break;
             default :
                 frames = createFrames(name, n);

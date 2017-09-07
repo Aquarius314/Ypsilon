@@ -19,7 +19,7 @@ public class World {
     public static boolean showColliders = true;
     public static boolean showTails = true;
 
-    public ArrayList<Player> players;
+    public static ArrayList<Player> players;
     public LinkedList<Displayable> decorations;
     public static LinkedList<Planet> planets;
     public static LinkedList<Enemy> enemies;

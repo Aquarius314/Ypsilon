@@ -11,12 +11,12 @@ public abstract class Weapon extends CanvasElement {
 
     protected double shootingSpeed;
     protected double lastUseTime = 0;
-    protected Player owner;
+    protected Alive owner;
     protected int maxAmmunition = 20;
     protected int ammunition = maxAmmunition;
     protected double damage;
 
-    public Weapon(double s, Player owner) {
+    public Weapon(double s, Alive owner) {
         this.shootingSpeed = s;
         this.owner = owner;
     }
