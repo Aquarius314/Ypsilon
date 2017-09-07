@@ -27,19 +27,14 @@ public class Missile extends GameObject implements Active, RigidBody {
         bulletRed = new Image("assets/bullet_red.png");
     }
 
-//    public Missile(double x, double y, double r, double vx, double vy, double dmg) {
-//        super(x, y, r);
-//        setVx(vx*unitSpeed);
-//        setVy(vy*unitSpeed);
-//        move();move();move();   // so it doesnt start from middle of player
-//        creationTime = System.currentTimeMillis();
-//        this.dmg = dmg;
-//    }
-
     public Missile(Alive parent, double vx, double vy) {
-        super(parent.getX(), parent.getY(), parent.getRadius());
+        super(parent.getX(), parent.getY(), bulletBlue.getWidth()/2);
         setVx(vx*unitSpeed);
         setVy(vy*unitSpeed);
+        setWidth(bulletBlue.getWidth());
+        setHeight(bulletBlue.getHeight());
+        setRadius((getWidth()+getHeight())/4);
+        move();move();  // so it doesn't start from middle of the shooter
         creationTime = System.currentTimeMillis();
         this.dmg = parent.getDamage();
         this.align = parent.getAlign();
@@ -62,7 +57,7 @@ public class Missile extends GameObject implements Active, RigidBody {
     public void display(GraphicsContext gc, double time) {
 //        gc.setFill(Color.RED);
         gc.save();
-        rotate(gc, getX()+getWidth()/2 - Player.rx(), getY()+getHeight()/2 - Player.ry());
+        rotate(gc, getX() - Player.rx(), getY() - Player.ry());
 //        rotate(gc, getX(), getY());
         gc.drawImage(align==0 ? bulletBlue : bulletRed, getX()-getRadius() - Player.rx(), getY()-getRadius() - Player.ry());
         gc.restore();
